@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shree Krushna Avadhut Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #e91e8c;
+    --dark-pink: #c0166f;
+    --gold: #c9a227;
+    --dark: #0d0d1a;
+    --darker: #080812;
+    --navy: #12122a;
+    --light: #f0f0f8;
+    --gray: #888;
+    --card-bg: rgba(255,255,255,0.04);
+    --border: rgba(233,30,140,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--darker);
+    color: var(--light);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(8,8,18,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--light);
+  }
+  .nav-logo span { color: var(--pink); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 5vw 60px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(233,30,140,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(233,30,140,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(233,30,140,0.18) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,162,39,0.1) 0%, transparent 70%);
+    bottom: 0; left: 10%;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    padding: 5px 14px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+  .hero-title span { color: var(--pink); }
+  .hero-title .gold { color: var(--gold); }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #bbb;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--pink);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--dark-pink); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--light);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
+  .hero-stats {
+    position: absolute; bottom: 60px; right: 5vw;
+    display: flex; gap: 3rem; z-index: 2;
+    animation: fadeUp 0.7s ease 0.4s both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.8rem;
+    color: var(--pink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 5vw; }
+  .section-eyebrow {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+  .section-title span { color: var(--pink); }
+  .section-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #aaa;
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .divider {
+    width: 60px; height: 3px;
+    background: var(--pink);
+    margin: 1.2rem 0 2.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-img-block { position: relative; }
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--dark-pink) 50%, #6b0038 100%);
+    clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-img-inner {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 5px;
+    text-align: center;
+  }
+  .about-year-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--gold);
+    color: var(--darker);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    padding: 12px 20px;
+  }
+  .about-points { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .about-points li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.95rem; color: #ccc;
+  }
+  .about-points li::before {
+    content: '▶';
+    color: var(--pink);
+    font-size: 0.6rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  /* ── SERVICES ── */
+  #services { position: relative; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+  }
+  .service-card {
+    position: relative;
+    padding: 3rem 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { border-color: rgba(233,30,140,0.6); transform: translateY(-4px); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: var(--light);
+  }
+  .service-desc {
+    font-size: 0.9rem;
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .service-items { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .service-items li {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #bbb;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .service-items li::before { content: '—'; color: var(--pink); font-size: 0.8rem; }
+  .service-bg-num {
+    position: absolute;
+    bottom: -10px; right: 10px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 6rem;
+    color: rgba(233,30,140,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* ── BRANDS ── */
+  #brands { background: var(--navy); }
+  .brands-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0;
+  }
+  .brand-pill {
+    padding: 10px 22px;
+    border: 1px solid var(--border);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: #ccc;
+    background: var(--card-bg);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .brand-pill:hover { border-color: var(--pink); color: var(--pink); }
+  .brands-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  .brand-group-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  /* ── CLIENTS ── */
+  #clients { }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .client-cell {
+    padding: 1.2rem 1.5rem;
+    background: var(--darker);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #aaa;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .client-cell:hover { background: var(--navy); color: var(--light); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+  .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(233,30,140,0.12);
+    border: 1px solid rgba(233,30,140,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-item-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 4px;
+  }
+  .contact-item-value {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+  }
+  .contact-item-value a { color: #ccc; text-decoration: none; }
+  .contact-item-value a:hover { color: var(--pink); }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--light);
+    padding: 12px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: none;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus { border-color: var(--pink); }
+  .form-field select option { background: var(--dark); }
+  .form-field textarea { min-height: 110px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 5vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+  }
+  .footer-logo span { color: var(--pink); }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--pink);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-item {
+    display: inline-block;
+    padding: 0 2.5rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .ticker-item::after { content: '◆'; margin-left: 2.5rem; opacity: 0.5; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid,
+    .contact-grid,
+    .brands-split { grid-template-columns: 1fr; gap: 2.5rem; }
+    .clients-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { position: static; margin-top: 3rem; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .clients-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S<span>K</span>A <span style="color:var(--gold);">ENTERPRISES</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary" style="font-size:0.75rem;padding:10px 20px;">Get Quote</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Est. 2008 · Ranjangaon MIDC, Pune</div>
+    <h1 class="hero-title">
+      SHREE<br>
+      <span>KRUSHNA</span><br>
+      <span class="gold">AVADHUT</span><br>
+      ENTERPRISES
+    </h1>
+    <p class="hero-sub">Industrial epoxy coating, electrical supply, and printing solutions — trusted by leading manufacturers across Pune & beyond.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Years Active</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Core Services</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">16+</div>
+      <div class="stat-label">Major Clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">Epoxy Coating</span>
+    <span class="ticker-item">Floor Hardener</span>
+    <span class="ticker-item">Electrical Supply</span>
+    <span class="ticker-item">Printing Solutions</span>
+    <span class="ticker-item">Industrial Painting</span>
+    <span class="ticker-item">Asian Paints Distributor</span>
+    <span class="ticker-item">Sika India Applicator</span>
+    <span class="ticker-item">Water Proofing</span>
+    <span class="ticker-item">Fire Resistance Coating</span>
+    <span class="ticker-item">Epoxy Coating</span>
+    <span class="ticker-item">Floor Hardener</span>
+    <span class="ticker-item">Electrical Supply</span>
+    <span class="ticker-item">Printing Solutions</span>
+    <span class="ticker-item">Industrial Painting</span>
+    <span class="ticker-item">Asian Paints Distributor</span>
+    <span class="ticker-item">Sika India Applicator</span>
+    <span class="ticker-item">Water Proofing</span>
+    <span class="ticker-item">Fire Resistance Coating</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-block">
+      <div class="about-img-frame">
+        <div class="about-img-inner">SKA<br>ENTERPRISES</div>
+      </div>
+      <div class="about-year-badge">SINCE 2008</div>
+    </div>
+    <div>
+      <div class="section-eyebrow">Who We Are</div>
+      <h2 class="section-title">INDUSTRIAL <span>SOLUTIONS</span> YOU CAN TRUST</h2>
+      <div class="divider"></div>
+      <p style="font-size:0.95rem;color:#bbb;line-height:1.75;margin-bottom:1.5rem;">
+        Since 2008, Shree Krushna Avadhut Enterprises has stepped in wherever the industry needed us — starting with Industrial Floor Coating & Identification Sticker business and growing into a comprehensive industrial service provider.
+      </p>
+      <p style="font-size:0.95rem;color:#bbb;line-height:1.75;margin-bottom:2rem;">
+        With a competent technical team, latest equipment, and a track record of efficient, on-time delivery, we have become one of the key torch-bearers for all industrial solutions across the Pune region.
+      </p>
+      <ul class="about-points">
+        <li>Authorised distributor &amp; applicator of Asian Paints, Sika India, Nippon &amp; Pidlite Cipy</li>
+        <li>Serving factories, auto manufacturers, pharma, warehouses &amp; more</li>
+        <li>3 units: Shirur (2), Shivaji Road Pune</li>
+        <li>Contact: Mr. Chandrakant Bhausaheb Bhos · +91 9975100041</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="text-align:center;margin-bottom:3.5rem;">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title">OUR CORE <span>SERVICES</span></h2>
+    <div class="divider" style="margin:1rem auto 0;"></div>
+  </div>
+  <div class="services-grid">
+    <!-- Card 1 -->
+    <div class="service-card">
+      <span class="service-icon">🏭</span>
+      <div class="service-name">Epoxy Coating &amp; Painting</div>
+      <p class="service-desc">Complete industrial floor coating and painting solutions from 300 micron up to 5mm thickness, using premium materials from authorised brands.</p>
+      <ul class="service-items">
+        <li>Epoxy Roller Coating</li>
+        <li>Self-Levelling Floors (SL)</li>
+        <li>Anti-Skid &amp; Matt Finish Flooring</li>
+        <li>Heat Reflective &amp; FR Painting</li>
+        <li>Machine, Pipe &amp; Structure Painting</li>
+        <li>Yellow Marking &amp; Wall Painting</li>
+        <li>Water-Based &amp; Chemical Resistant Floors</li>
+      </ul>
+      <div class="service-bg-num">01</div>
+    </div>
+    <!-- Card 2 -->
+    <div class="service-card">
+      <span class="service-icon">⚡</span>
+      <div class="service-name">Electrical Material &amp; Services</div>
+      <p class="service-desc">Trusted supplier of industrial electrical materials from leading brands like Legrand, Havells, Anchor by Panasonic, Simon, and GM since 2016.</p>
+      <ul class="service-items">
+        <li>Polycab Wire &amp; Cables</li>
+        <li>Earthing Materials &amp; Cable Trays</li>
+        <li>Switches, Plates &amp; Junction Boxes</li>
+        <li>PVC Conduit Pipe (1/2/3/4 way)</li>
+        <li>Copper &amp; Aluminium Terminals</li>
+        <li>All Syska Lights</li>
+        <li>Casing, Capping &amp; All Electrical Services</li>
+      </ul>
+      <div class="service-bg-num">02</div>
+    </div>
+    <!-- Card 3 -->
+    <div class="service-card">
+      <span class="service-icon">🖨️</span>
+      <div class="service-name">Printing Solutions</div>
+      <p class="service-desc">Industrial and commercial printing — from identification stickers and signage to offset, flex, and vinyl printing, tailored to client specifications.</p>
+      <ul class="service-items">
+        <li>Offset &amp; Screen Printing</li>
+        <li>Sticker, Tag &amp; V-Card Printing</li>
+        <li>Letter Head, Challans &amp; Lock Books</li>
+        <li>Signage, Safety Vinyl &amp; Flex Board</li>
+        <li>I-Card &amp; Acrylic Folder Jobs</li>
+        <li>Sun Control Film</li>
+        <li>Magnetic &amp; Non-Magnetic Boards</li>
+      </ul>
+      <div class="service-bg-num">03</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <div class="section-eyebrow">Partnerships</div>
+  <h2 class="section-title">AUTHORISED <span>DISTRIBUTOR</span></h2>
+  <div class="divider"></div>
+  <div class="brands-split">
+    <div>
+      <div class="brand-group-title">Authorised Applicator &amp; Distributor</div>
+      <div class="brands-row">
+        <div class="brand-pill">Asian Paints Pvt Ltd</div>
+        <div class="brand-pill">Sika India Pvt Ltd</div>
+        <div class="brand-pill">Nippon India Pvt Ltd</div>
+        <div class="brand-pill">Pidlite Cipy Pvt Ltd</div>
+      </div>
+    </div>
+    <div>
+      <div class="brand-group-title">Products We Supply</div>
+      <div class="brands-row">
+        <div class="brand-pill">Floor Hardener</div>
+        <div class="brand-pill">Sodium Silicate</div>
+        <div class="brand-pill">Epoxy &amp; PU Floor Coating</div>
+        <div class="brand-pill">Water-Proofing</div>
+        <div class="brand-pill">Sealants</div>
+        <div class="brand-pill">Legrand</div>
+        <div class="brand-pill">Havells</div>
+        <div class="brand-pill">Anchor by Panasonic</div>
+        <div class="brand-pill">Simon</div>
+        <div class="brand-pill">GM Electrical</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="section-eyebrow">Trusted By</div>
+  <h2 class="section-title">OUR <span>CLIENTS</span></h2>
+  <div class="divider"></div>
+  <p class="section-desc">We proudly serve some of India's most demanding industrial clients across automotive, pharma, engineering, and infrastructure sectors.</p>
+  <div class="clients-grid">
+    <div class="client-cell">Carraro India Ltd</div>
+    <div class="client-cell">BASF &amp; Chemetall India Pvt Ltd</div>
+    <div class="client-cell">Wheels India Pvt Ltd</div>
+    <div class="client-cell">Avery Dennison India Pvt Ltd</div>
+    <div class="client-cell">SKH Metal Components</div>
+    <div class="client-cell">Dia Aluminium India Pvt Ltd</div>
+    <div class="client-cell">Garg Inox Ltd</div>
+    <div class="client-cell">Prime Cold Pvt Ltd</div>
+    <div class="client-cell">IFB Refrigeration Ltd</div>
+    <div class="client-cell">Mazak Machine Tools Pvt Ltd</div>
+    <div class="client-cell">Mutual Industries Pvt Ltd</div>
+    <div class="client-cell">Kalyani Technoforge Ltd</div>
+    <div class="client-cell">Kosi Plast Pvt Ltd</div>
+    <div class="client-cell">Danfoss Power S. India Pvt Ltd</div>
+    <div class="client-cell">Prince Constructions</div>
+    <div class="client-cell">Minda Infrastructure LLP</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title">LET'S <span>WORK</span> TOGETHER</h2>
+      <div class="divider"></div>
+      <p style="font-size:0.95rem;color:#bbb;line-height:1.75;margin-bottom:2.5rem;">
+        Have a project, requirement, or query? Reach out and our team will get back to you promptly.
+      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-value">Mr. Chandrakant Bhausaheb Bhos<br>198/1 Karde Gaonthan, Shop No. 01, Near Bus Stand<br>Tal. Shirur, Dist. Pune 412210 · Ranjangaon MIDC</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">
+              <a href="tel:+919975100041">+91 9975100041</a> &nbsp;/&nbsp;
+              <a href="tel:+919960298555">9960298555</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">
+              <a href="mailto:skavadhut@rediffmail.com">skavadhut@rediffmail.com</a><br>
+              <a href="mailto:grm2209@gmail.com">grm2209@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Your Name</label>
+            <input type="text" name="from_name" placeholder="Full name">
+          </div>
+          <div class="form-field">
+            <label>Company</label>
+            <input type="text" name="company" placeholder="Company name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="+91 00000 00000">
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" name="reply_to" placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Epoxy Coating &amp; Painting</option>
+            <option>Electrical Material &amp; Services</option>
+            <option>Printing Solutions</option>
+            <option>Multiple / Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea name="message" placeholder="Describe your requirement..."></textarea>
+        </div>
+       <button type="submit" class="btn-primary">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">S<span>K</span>A <span style="color:var(--gold);">ENTERPRISES</span></div>
+  <div class="footer-copy">© Techinit-Shree Krushna Avadhut Enterprises · All Rights Reserved · Ranjangaon MIDC, Pune</div>
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("uodF6OQxlqYB0I3eF");
+})();
+
+document.querySelector(".contact-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm("service_1lnslns", "template_mxrdd5s", this)
+    .then(function() {
+      alert("✅ Enquiry sent successfully!");
+    })
+    .catch(function(error) {
+      alert("❌ Failed to send");
+      console.log("ERROR:", error);
+    });
+});
+</script>
+
+</body>
+</html>
