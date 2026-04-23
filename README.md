@@ -39,5 +39,5 @@ This project demonstrates **full-stack development skills**, UI design, and real
 | JS FRAMEWORKS | EMAILJS |
 
 ## Sample UI
-![home page](Screenshot(360).png)
+![home page](home.png)
 
